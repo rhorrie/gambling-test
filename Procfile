@@ -1,1 +1,1 @@
-web: gunicorn app:gambling-test
+web: gunicorn gambling-test:app
