@@ -45,9 +45,9 @@ function sortTable(n) {
 </head>
 <body>
 
-{% for table in tables %}
-            {{titles[loop.index]}}
-            {{ table|safe }}
-{% endfor %}
+#{% for table in tables %}
+    {{titles[loop.index]}}
+    {{ table|safe }}
+#{% endfor %}
 </body>
 </html>
