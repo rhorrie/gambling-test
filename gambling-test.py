@@ -114,7 +114,7 @@ def index():
     #                   'B': [5, 6, 7, 8, 9],
      #                  'C': ['a', 'b', 'c--', 'd', 'e']})
     
-    return render_template('simple.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('simple.html',  my_title='Test', my_content=df.columns.values)
     #return "<h1>Welcome to our server !!</h1>
 #if __name__ == '__main__':
 #    app.run(debug=True)
