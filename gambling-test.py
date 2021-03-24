@@ -36,7 +36,8 @@ def get_full_team_array(datelist, start_date, end_date):			#This function create
 		full_team_array = get_records(full_team_array, current_day_team_array, scores)
 		current_day_team_array = []
 
-	create_data_frame(full_team_array)
+	df = create_data_frame(full_team_array)
+	return df
 
 
 
@@ -101,9 +102,10 @@ def create_data_frame(full_team_array):	 #Creating and printing the final pandas
 			'Away Wins' : awaywins,
 			'Away Losses' : awaylosses
 		})
+	return df
 
 datelist = pd.date_range(datetime.datetime(2020, 11, 25), periods = 60)
-get_full_team_array(datelist, 0, 20)
+df = get_full_team_array(datelist, 0, 20)
 
 @app.route('/')
 def index():
