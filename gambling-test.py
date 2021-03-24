@@ -1,5 +1,10 @@
 from flask import Flask, request, render_template, session, redirect
 import pandas as pd
+from bs4 import BeautifulSoup
+import requests
+import datetime
+from datetime import date
+
 app = Flask(__name__)
 
 @app.route('/')
