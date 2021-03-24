@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-{% for table in tables %}
-            {{titles[loop.index]}}
-            {{ table|safe }}
-{% endfor %}
-</body>
-</html>
-
-function sortTable(n) {
+    
+    function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable2");
   switching = true;
@@ -68,3 +56,17 @@ function sortTable(n) {
   }
 }
 </script>
+    
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+</body>
+</html>
