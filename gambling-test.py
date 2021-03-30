@@ -106,16 +106,26 @@ def create_data_frame(full_team_array):	 #Creating and printing the final pandas
 
 datelist = pd.date_range(datetime.datetime(2020, 11, 25), periods = 60)
 df = get_full_team_array(datelist, 0, 20)
+header = []
+for col in df.columns:
+	header.append(col)
+print(header)
 
 @app.route('/')
 def index():
-    
-    #df = pd.DataFrame({'A': [0, 1, 2, 3, 4],
-    #                   'B': [5, 6, 7, 8, 9],
-     #                  'C': ['a', 'b', 'c--', 'd', 'e']})
-    #return df.to_html(header='true' , table_id='table')    
-	return render_template('simple.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
-    
-	#return "<h1>Welcome to our server !!</h1>
-#if __name__ == '__main__':
-#    app.run(debug=True)
+       
+	#return render_template('simple.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('new_test.html', column_names=df.columns.values, row_data=list(df.values.tolist()), zip=zip)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+#May have to rework entire table to not use pandas data frame but instead dicts. 
+
+
+
+
+
+
+
