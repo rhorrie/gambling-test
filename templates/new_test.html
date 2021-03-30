@@ -1,6 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    
+<table id ="myTable2">
+  <thead>
+
+    <tr>
+      <th>Team</th>
+      <th onclick="sortTable(1)">Wins</th>
+      <th onclick="sortTable(2)">Losses</th>
+      <th onclick="sortTable(3)">Home Wins</th>
+      <th onclick="sortTable(4)">Home Losses</th>
+      <th onclick="sortTable(5)">Away Wins</th>
+      <th onclick="sortTable(6)">Away Losses</th>
+    </tr>
+
+  </thead>
+    <tbody>
+      {% for row in row_data %}
+        <tr>
+          {% for col, row_ in zip(column_names, row) %}
+          <td>{{row_}}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+
+         
+    </tbody>
+  
+</table>
+
 <script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -8,17 +33,19 @@ function sortTable(n) {
   switching = true;
   dir = "asc";
   while (switching) {
+    switching = false;
     rows = table.rows;
     for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
       if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
           shouldSwitch = true;
           break;
         }
       } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        if (Number(x.innerHTML) < Number(y.innerHTML)) {
           shouldSwitch = true;
           break;
         }
@@ -37,17 +64,3 @@ function sortTable(n) {
   }
 }
 </script>
-
-    
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-#{% for table in tables %}
-    {{titles[loop.index]}}
-    {{ table|safe }}
-#{% endfor %}
-</body>
-</html>
