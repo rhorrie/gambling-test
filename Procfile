@@ -1,1 +1,1 @@
-web: gunicorn gambling-test:app
+web: gunicorn create_table:app
