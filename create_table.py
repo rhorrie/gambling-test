@@ -9,7 +9,7 @@ import pickle
 
 app = Flask(__name__)
 
-datelist = pd.date_range(start="2021-04-01", end=(datetime.datetime.today() - datetime.timedelta(days=1)))
+datelist = pd.date_range(start="2021-05-05", end=(datetime.datetime.today() - datetime.timedelta(days=1)))
 team_dict = get_full_team_array(datelist)
 
 file = open("data.pkl", "wb")
