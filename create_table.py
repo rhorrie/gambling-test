@@ -9,16 +9,13 @@ import pickle
 
 app = Flask(__name__)
 
-#datelist = pd.date_range(start="2021-04-01", end=(datetime.datetime.today() - datetime.timedelta(days=1)))
-#team_dict = get_full_team_array(datelist)
+datelist = pd.date_range(start="2021-05-20", end=(datetime.datetime.today() - datetime.timedelta(days=1)))
+team_dict = get_full_team_array(datelist)
 
-#file = open("data.pkl", "wb")
-#pickle.dump(team_dict, file)
-#file.close()
+file = open("data.pkl", "wb")
+pickle.dump(team_dict, file)
+file.close()
 
-#df = pd.DataFrame.from_dict(team_dict)
-
-team_dict = {"Name":[], "Wins":[], "Losses":[], "Home Wins":[], "Home Losses":[], "Away Wins":[], "Away Losses":[]}
 df = pd.DataFrame.from_dict(team_dict)
 
 @app.route('/')
