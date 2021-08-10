@@ -1,6 +1,4 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from rq import Queue
-from worker import conn
 
 #Schedule update_table_daily to run mon-fri at I believe 2 AM. Could be a timezone issue though.
 
