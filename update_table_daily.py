@@ -26,6 +26,12 @@ for i in range(0, len(total_dict["Name"])):
 
 df = pd.DataFrame.from_dict(total_dict)
 
+file = open("data.pkl", "wb")
+pickle.dump(total_dict, file)
+file.close()
+
+print(total_dict)
+
 @app.route('/')
 def index():
 	
