@@ -1,2 +1,2 @@
-web: gunicorn create_table:app
+web: gunicorn app:app
 clock: python clock.py
