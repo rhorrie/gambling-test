@@ -10,8 +10,8 @@ con.execute('DROP TABLE gambling')
 con.commit()
 
 #Recreates the table, just a test right now
-con.execute('''CREATE TABLE gambling
-		(name text, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int)''')
+con.execute('''CREATE TABLE IF NOT EXISTS gambling
+		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int)''')
 con.commit()
 
 #Determines the dates you choose and returns the team info in dict format
