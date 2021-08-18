@@ -1,3 +1,7 @@
+#This is only implemented for MLB as of right now.
+
+
+
 from flask import Flask, request, render_template, session, redirect
 import pandas as pd
 import requests
@@ -16,5 +20,5 @@ daily_dict = get_full_team_array(datelist)
 
 #Updating table values to include todays game outcomes
 for i in range(0, len(daily_dict["Name"])):	
-	con.execute("UPDATE gambling SET wins=wins+?, losses=losses+?, homewins=homewins+?, homelosses=homelosses + ?, awaywins=awaywins+?, awaylosses=awaylosses+? WHERE Name = ?", (daily_dict["Wins"][i], daily_dict["Losses"][i], daily_dict["Home Wins"][i], daily_dict["Home Losses"][i], daily_dict["Away Wins"][i], daily_dict["Away Losses"][i], daily_dict["Name"][i]))
+	con.execute("UPDATE mlb_gambling SET wins=wins+?, losses=losses+?, homewins=homewins+?, homelosses=homelosses + ?, awaywins=awaywins+?, awaylosses=awaylosses+? WHERE Name = ?", (daily_dict["Wins"][i], daily_dict["Losses"][i], daily_dict["Home Wins"][i], daily_dict["Home Losses"][i], daily_dict["Away Wins"][i], daily_dict["Away Losses"][i], daily_dict["Name"][i]))
 con.commit()
