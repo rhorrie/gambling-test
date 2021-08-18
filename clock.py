@@ -1,3 +1,6 @@
+
+#This runs the update table function to update MLB tables.
+
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 #Schedule update_table_daily to run mon-fri at I believe 2 AM. Could be a timezone issue though.

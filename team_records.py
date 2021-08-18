@@ -5,15 +5,18 @@ import requests
 import datetime
 from datetime import date
 
-def get_full_team_array(datelist):			#This function creates the full_team_array as well as seperates the current day teams/scores from the full list of teams
+def get_full_team_array(datelist, address):			#This function creates the full_team_array as well as seperates the current day teams/scores from the full list of teams
+	
+	#This is not used currently, but will be once NCAA basketball starts and possibly NCAA football as well. Most likely.
 	rank_array = ['(1) ', '(2) ','(3) ', '(4) ', '(5) ' ,'(6) ', '(7) ', '(8) ', '(9) ', '(10) ', '(11) ', '(12) ', '(13) ', '(14) ', '(15) ', '(16) ', '(17) ', '(18) ', '(19) ', '(20) ', '(21) ', '(22) ', '(23) ', '(24) ', '(25) ']
 
+	#Creating team dictionary to contain all teams and records until I can enter the info into database with SQLite3
 	team_dict = {"Name":[], "Wins":[], "Losses":[], "Home Wins":[], "Home Losses":[], "Away Wins":[], "Away Losses":[]}
 	current_day_team_array = []
 
-	for x in datelist:
-		date = x.strftime('%Y-%m-%d')
-		url = 'https://www.thescore.com/mlb/events/date/' + date
+	#Inserting team names into dictionary to use in the future. 
+	for date in datelist:
+		url = address + date
 		page = requests.get(url)
 		soup = BeautifulSoup(page.content, 'html.parser')
 		teams = soup.find_all(attrs = {'class': 'EventCard__teamName--JweK5'})
@@ -32,7 +35,11 @@ def get_full_team_array(datelist):			#This function creates the full_team_array 
 					team_dict["Away Wins"].append(0)
 					team_dict["Away Losses"].append(0)
 
+		
+		#Calling get_records to determine the record information for every team.
 		team_dict = get_records(team_dict, current_day_team_array, scores, finals)
+
+		#Resets the current day array for the loop
 		current_day_team_array = []
 
 	return team_dict

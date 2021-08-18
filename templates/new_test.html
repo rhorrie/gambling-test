@@ -1,30 +1,45 @@
-<table id ="myTable2">
-  <thead>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Records</title>
+  </head>
 
-    <tr>
-      <th>Team</th>
-      <th onclick="sortTable(1)">Wins</th>
-      <th onclick="sortTable(2)">Losses</th>
-      <th onclick="sortTable(3)">Home Wins</th>
-      <th onclick="sortTable(4)">Home Losses</th>
-      <th onclick="sortTable(5)">Away Wins</th>
-      <th onclick="sortTable(6)">Away Losses</th>
-    </tr>
+  <body>
+    <p><a href="/">MLB</a></p>
+    <p><a href="/nfl/">NFL</a></p>
 
-  </thead>
-    <tbody>
-      {% for row in row_data %}
+    
+    <table id ="myTable2">
+      <thead>
+    
         <tr>
-          {% for col, row_ in zip(column_names, row) %}
-          <td>{{row_}}</td>
-          {% endfor %}
+          <th>Team</th>
+          <th onclick="sortTable(1)">Wins</th>
+          <th onclick="sortTable(2)">Losses</th>
+          <th onclick="sortTable(3)">Home Wins</th>
+          <th onclick="sortTable(4)">Home Losses</th>
+          <th onclick="sortTable(5)">Away Wins</th>
+          <th onclick="sortTable(6)">Away Losses</th>
+          <th onclick="sortTable(7)">PlusMinus</th>
         </tr>
-      {% endfor %}
+    
+      </thead>
+        <tbody>
+          {% for row in row_data %}
+            <tr>
+              {% for col, row_ in zip(column_names, row) %}
+              <td>{{row_}}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+    
+             
+        </tbody>
+      
+    </table>
+  </body>
+</html>
 
-         
-    </tbody>
-  
-</table>
 
 <script>
 function sortTable(n) {
