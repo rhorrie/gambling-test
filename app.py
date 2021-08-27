@@ -10,10 +10,7 @@ import os
 DATABASE_URL = os.environ['DATABASE_URL']
 con = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = con.cursor()
-#cur.execute('DROP TABLE mlb_gambling')
-#cur.execute('DROP TABLE nfl_gambling')
-#con.commit()
-#
+
 ##Creates MLB gambling table if it does not already exist. Just a test right now
 cur.execute('''CREATE TABLE IF NOT EXISTS mlb_gambling
 		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int, plusminus decimal)''')
