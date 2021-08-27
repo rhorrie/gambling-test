@@ -7,11 +7,11 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.mlb_scheduled_job('cron', day_of_week='mon-fri', hour=2)
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour=2)
 def mlb_scheduled_job():
 	execfile('mlb_daily_table.py')
 
-@sched.nfl_scheduled_job('cron', dary_of_week='tue', hour=2)
+@sched.scheduled_job('cron', day_of_week='tue', hour=2)
 def nfl_scheduled_job():
 	execfile('nfl_weekly_table.py')
 
