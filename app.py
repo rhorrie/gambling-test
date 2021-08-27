@@ -7,7 +7,7 @@ import psycopg2
 import os
 
 #Connects to database and drops tables if they already exists, this is mainly just for testing purposes as it will not run more then once on heroku.
-DATABASE_URL = os.enivron['DATABASE_URL']
+DATABASE_URL = os.environ['DATABASE_URL']
 con = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = con.cursor()
 #cur.execute('DROP TABLE mlb_gambling')
