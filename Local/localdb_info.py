@@ -2,24 +2,24 @@ from flask import Flask, request, render_template, session, redirect
 import requests
 import pandas as pd
 import sqlite3
-from team_records import * 
+from local_team_records import * 
 import psycopg2
 
+
 #Connects to database and drops tables if they already exists, this is mainly just for testing purposes as it will not run more then once on heroku.
-con = psycopg2.connect(database="postgresql-graceful-84135")
+con = psycopg2.connect(database="localdb")
 cur = con.cursor()
 
-#cur.execute('DROP TABLE mlb_gambling')
-#cur.execute('DROP TABLE nfl_gambling')
-#con.commit()
-#
+cur.execute('''DROP TABLE mlb_gambling''')
+cur.execute('''DROP TABLE nfl_gambling''')
+
 ##Creates MLB gambling table if it does not already exist. Just a test right now
-#cur.execute('''CREATE TABLE IF NOT EXISTS mlb_gambling
-#		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int, plusminus decimal)''')
+cur.execute('''CREATE TABLE IF NOT EXISTS mlb_gambling
+		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int, plusminus decimal)''')
 #
 ##Creates NFL gamlbing table if it does not already exist. 
-#cur.execute('''CREATE TABLE IF NOT EXISTS nfl_gambling
-#		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int, plusminus decimal)''')
+cur.execute('''CREATE TABLE IF NOT EXISTS nfl_gambling
+		(name text UNIQUE, wins int, losses int, homewins int, homelosses int, awaywins int, awaylosses int, plusminus decimal)''')
 
 #Commit the table creations
 con.commit()
@@ -46,3 +46,27 @@ for i in range(0, len(nfl_team_dict["Name"])):
 
 #Commits changes made to MLB and NFL gambling tables
 con.commit()
+
+
+#Code below is only used for local testing.
+#Creates the flask application
+app = Flask(__name__)
+
+@app.route('/', methods=["GET", "POST"])
+def index():
+
+	#Connects to database in order to have a continued connection. Displays all info from the MLB gambling table.
+	con = psycopg2.connect(database="localdb")
+	df = pd.read_sql_query("SELECT * from mlb_gambling", con)
+	return render_template('new_test.html', column_names=df.columns.values, row_data=list(df.values.tolist()), zip=zip)
+
+@app.route('/nfl/')
+def nfl():
+	
+	#Connects to database in order to have a continued connection. Displays all info from the NFL gambling table.
+	con = psycopg2.connect(database="localdb")
+	df = pd.read_sql_query("SELECT * from nfl_gambling", con)
+	return render_template('new_test.html', column_names=df.columns.values, row_data=list(df.values.tolist()), zip=zip)
+
+if __name__ == '__main__':
+	app.run(debug=True)

@@ -1,11 +1,9 @@
 #Determines the plus/minus value just based off of a very simple weighted function I created and inserts the values into table.
-#Not yet implemented
 
 import psycopg2
 
 #Connecting to database and creating iterators to iterate over information from tables
-DATABASE_URL = os.environ['DATABASE_URL']
-con = psycopg2.connect(DATABASE_URL, sslmode='require')
+con = psycopg2.connect(database="localdb")
 mlb_iterator = con.cursor()
 nfl_iterator = con.cursor()
 cur = con.cursor()
@@ -24,7 +22,7 @@ for row in mlb_iterator:
 	plusminus = round(plusminus, 2)
 	mlb_plusminus_array.append(plusminus)
 for i in range(0, len(mlb_team_array)):
-	ccur.execute('UPDATE mlb_gambling SET plusminus = %s WHERE name = %s', ((mlb_plusminus_array[i]), mlb_team_array[i]))
+	cur.execute('UPDATE mlb_gambling SET plusminus = %s WHERE name = %s', ((mlb_plusminus_array[i]), mlb_team_array[i]))
 
 #Updating nfl plus/minsu column
 nfl_iterator.execute('SELECT * FROM nfl_gambling')
@@ -41,3 +39,5 @@ con.commit()
 
 #This file can be used to insert updated info into the dataframe that is already in use. Just find where the info needs to be inserted
 # and insert it using sqlite3 as shown above. Can also be used for testing.
+
+
