@@ -32,7 +32,7 @@ app = Flask(__name__)
 def index():
 
 	#Connects to database in order to have a continued connection. Displays all info from the MLB gambling table.
-	DATABASE_URL = os.enivron['DATABASE_URL']
+	DATABASE_URL = os.environ['DATABASE_URL']
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	df = pd.read_sql_query("SELECT * from mlb_gambling", con)
 	return render_template('new_test.html', column_names=df.columns.values, row_data=list(df.values.tolist()), zip=zip)
@@ -41,7 +41,7 @@ def index():
 def nfl():
 	
 	#Connects to database in order to have a continued connection. Displays all info from the NFL gambling table.
-	DATABASE_URL = os.enivron['DATABASE_URL']
+	DATABASE_URL = os.environ['DATABASE_URL']
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	df = pd.read_sql_query("SELECT * from nfl_gambling", con)
 	return render_template('new_test.html', column_names=df.columns.values, row_data=list(df.values.tolist()), zip=zip)
