@@ -2,6 +2,8 @@
 #This runs the update table function to update MLB tables.
 
 from apscheduler.schedulers.blocking import BlockingScheduler
+import pytz
+from pytz import timezone
 
 #Schedule update_table_daily to run mon-fri at I believe 2 AM. Could be a timezone issue though.
 
@@ -15,5 +17,7 @@ def mlb_scheduled_job():
 def nfl_scheduled_job():
 	execfile('nfl_weekly_table.py')
 
-
 sched.start()
+
+
+#Need to solve the timezone issue. Other than that everything is up and running and good to go. 
