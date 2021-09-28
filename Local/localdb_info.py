@@ -33,7 +33,7 @@ for x in mlb_datelist:
 mlb_team_dict = get_full_team_array(string_datelist, 'https://www.thescore.com/mlb/events/date/')
 
 #Determines the "dates" you want for NFL. These are a little different because they are just numbered weeks. Calls to get the team array for NFL stats
-nfl_datelist = ['2021-preseason_2']
+nfl_datelist = ['2021-1', '2021-2', '2021-3']
 nfl_team_dict = get_full_team_array(nfl_datelist, 'https://www.thescore.com/nfl/events/date/')
 
 #Inserts dict values into MLB gambling table 

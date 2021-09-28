@@ -1,5 +1,4 @@
 #Determines the plus/minus value just based off of a very simple weighted function I created and inserts the values into table.
-#Not yet implemented
 
 import psycopg2
 
@@ -24,7 +23,7 @@ for row in mlb_iterator:
 	plusminus = round(plusminus, 2)
 	mlb_plusminus_array.append(plusminus)
 for i in range(0, len(mlb_team_array)):
-	ccur.execute('UPDATE mlb_gambling SET plusminus = %s WHERE name = %s', ((mlb_plusminus_array[i]), mlb_team_array[i]))
+	cur.execute('UPDATE mlb_gambling SET plusminus = %s WHERE name = %s', ((mlb_plusminus_array[i]), mlb_team_array[i]))
 
 #Updating nfl plus/minsu column
 nfl_iterator.execute('SELECT * FROM nfl_gambling')

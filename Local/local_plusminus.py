@@ -5,7 +5,7 @@ import psycopg2
 #Connecting to database and creating iterators to iterate over information from tables
 con = psycopg2.connect(database="localdb")
 mlb_iterator = con.cursor()
-nfl_iterator = con.cursor()
+nfl_iterator = con.cursor() 
 cur = con.cursor()
 
 #Creating arrays for mlb and nfl information
