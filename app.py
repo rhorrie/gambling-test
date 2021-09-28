@@ -53,5 +53,3 @@ if __name__ == '__main__':
 #This only needs to be ran one time and it automatically updates the table
 #whenever the table is edited. This needs to be the web dyno in heroku.
 
-#No longer using create_table.py to originally create the table. All I need to do now is figure out how to have background workers
-# in Heroku to perform the webscraping and updates on the table and we should be set.

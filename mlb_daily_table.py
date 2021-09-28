@@ -1,7 +1,6 @@
 #This is only implemented for MLB as of right now.
 
 
-
 from flask import Flask, request, render_template, session, redirect
 import pandas as pd
 import requests
