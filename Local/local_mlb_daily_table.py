@@ -1,15 +1,11 @@
 #Updates the table based off of yesterdays mlb scores. IS scheduled to run through clock.py
 
-
-from flask import Flask, request, render_template, session, redirect
-import pandas as pd
-import requests
-from team_records import *
 import datetime
 from datetime import date
 import time
 import sqlite3
 import psycopg2
+from local_team_records import * 
 
 #Connection to database
 con = psycopg2.connect(database="localdb")

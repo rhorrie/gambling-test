@@ -1,6 +1,7 @@
 #Determines the plus/minus value just based off of a very simple weighted function I created and inserts the values into table.
 
 import psycopg2
+import sqlite3
 
 #Connecting to database and creating iterators to iterate over information from tables
 con = psycopg2.connect(database="localdb")

@@ -1,18 +1,14 @@
 #This is only implemented for MLB as of right now.
 
-
-from flask import Flask, request, render_template, session, redirect
-import pandas as pd
-import requests
-from team_records import *
 import datetime
 from datetime import date
 import time
 import sqlite3
 import psycopg2
 import os
+from team_records import *
 
-def mlb_daily()
+def mlb_daily():
 	#Connection to database
 	DATABASE_URL = os.environ['DATABASE_URL']
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
