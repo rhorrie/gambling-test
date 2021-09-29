@@ -9,14 +9,19 @@ from pytz import timezone
 
 sched = BlockingScheduler()
 
+@sched.scheduled_job('interval', minutes=2)
+def timed_job_test():
+	execfile('nfl_weekly_table.py')
+sched.start()
+
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=2)
 def mlb_scheduled_job():
 	execfile('mlb_daily_table.py')
+sched.start()
 
 @sched.scheduled_job('cron', day_of_week='tue', hour=2)
 def nfl_scheduled_job():
 	execfile('nfl_weekly_table.py')
-
 sched.start()
 
 
