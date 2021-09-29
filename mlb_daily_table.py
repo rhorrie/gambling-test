@@ -10,6 +10,7 @@ from datetime import date
 import time
 import sqlite3
 import psycopg2
+import os
 
 #Connection to database
 DATABASE_URL = os.environ['DATABASE_URL']
