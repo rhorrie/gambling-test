@@ -4,7 +4,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import pytz
 from pytz import timezone
-from nfl_weekly_table
+from nfl_weekly_table import nfl_weekly
 
 #Schedule update_table_daily to run mon-fri at I believe 2 AM. Could be a timezone issue though.
 
@@ -12,7 +12,7 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=2)
 def timed_job_test():
-	nfl_weekly_table.nfl_weekly()
+	nfl_weekly()
 sched.start()
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=2)
