@@ -4,7 +4,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import pytz
 from pytz import timezone
-from nfl_weekly_table
+from nfl_weekly_table import *
 
 #Schedule update_table_daily to run mon-fri at I believe 2 AM. Could be a timezone issue though.
 
