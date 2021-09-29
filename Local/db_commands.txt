@@ -1,0 +1,2 @@
+heroku pg:reset --app gambling-test  #resets the postgresql database on heroku app
+heroku pg:push localdb postgresql-graceful-84135 --app gambling-test	#Pushes new database to app
